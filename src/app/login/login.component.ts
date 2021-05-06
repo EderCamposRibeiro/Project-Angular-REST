@@ -8,9 +8,9 @@ import { LoginServiceService } from '../service/login-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  user = {login: '', password: ''};
+  user = { login: '', password: '' };
 
-  constructor(private loginService: LoginServiceService){}
+  constructor(private loginService: LoginServiceService) { }
 
   public login() {
     this.loginService.login(this.user);
