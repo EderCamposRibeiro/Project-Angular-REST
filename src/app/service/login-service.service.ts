@@ -11,9 +11,9 @@ export class LoginServiceService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(user) {
+  login(suser) {
     /*return this.http.post(url, data)*/
-    return this.http.post(AppConstants.baseLogin, JSON.stringify(user)).subscribe(data => {
+    return this.http.post(AppConstants.baseLogin, JSON.stringify(suser)).subscribe(data => {
 
       /*Http return*/
 
