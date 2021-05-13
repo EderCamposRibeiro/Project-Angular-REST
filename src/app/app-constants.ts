@@ -6,3 +6,5 @@ export class AppConstants {
 
 	public static get baseUrl(): string { return this.baseServidor + "projectspringrestapi/users/" }
 }
+
+

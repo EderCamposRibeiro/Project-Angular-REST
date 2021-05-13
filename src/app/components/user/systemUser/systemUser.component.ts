@@ -11,6 +11,7 @@ import { SystemUser } from 'src/app/model/systemUser';
 export class SystemUserComponent implements OnInit {
 
   users: Observable<SystemUser[]>;
+  name: String;
 
   constructor(private userService: UserService) {
 
@@ -29,6 +30,12 @@ export class SystemUserComponent implements OnInit {
         this.users = data;
       });
     });
+  }
+
+  findUser() {
+    this.userService.findUser(this.name).subscribe(data => {
+      this.users = data;
+    })
   }
 
 }

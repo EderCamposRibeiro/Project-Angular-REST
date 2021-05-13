@@ -1,3 +1,14 @@
+<br/>
+<br/>
+<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" placeholder="Search by name">
+  </div>
+  <button type="button" (click)="findUser()" class="btn btn-primary mb-2">Search</button>
+</form>
+<br/>
+<br/>
+
 <table class="table">
 	<thead class="thead-dark">
 		<th scope="col">ID</th>

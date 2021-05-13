@@ -17,6 +17,14 @@ export class UserService {
   }
 
   deleteUser(id: Number): Observable<any> {
-    return this.http.delete(AppConstants.baseUrl + id, {responseType: 'text'});
+    return this.http.delete(AppConstants.baseUrl + id, { responseType: 'text' });
   }
+
+   //http://localhost:8080/projectspringrestapi/users/userByName/eder
+  findUser(name: String): Observable<any> {
+    return this.http.get(AppConstants.baseUrl + 'userByName/' + name);
+
+
+  }
+
 }
