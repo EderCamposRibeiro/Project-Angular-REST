@@ -4,36 +4,36 @@
 	<div class="form-row">
 		<div class="form-group col-md-1">
 			<label for="id">ID</label>
-			<input type="text" class="form-control" id="id" readonly="true" name="id" autocomplete="false">
+			<input type="text" [(ngModel)]="user.id" class="form-control" id="id" readonly="true" name="id" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			<label for="name">Name</label>
-			<input type="text" class="form-control" id="name" required="true" name="name" autocomplete="false">
+			<input type="text" [(ngModel)]="user.name" class="form-control" id="name" required="true" name="name" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="login">Login/Email</label>
-			<input type="text" class="form-control" id="login" name="login" required="true" autocomplete="false">
+			<input type="text" [(ngModel)]="user.login" class="form-control" id="login" name="login" required="true" autocomplete="false">
 		</div>
 		<div class="form-group col-md-6">
 			<label for="password">Password</label>
-			<input type="password" class="form-control" id="password" name="password" required="true" autocomplete="false">
+			<input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password" required="true" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="cpf">CPF</label>
-			<input type="text" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
+			<input type="text" [(ngModel)]="user.cpf" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active" >Back</button>
 			<button type="button" class="btn btn-primary" style="margin-left: 10px;">New</button>
-			<button type="button" class="btn btn-primary" style="margin-left: 10px;">Save</button>
+			<button type="button" class="btn btn-primary" (click)="saveUser()" style="margin-left: 10px;">Save</button>
 		</div>
 	</div>
 </form>
