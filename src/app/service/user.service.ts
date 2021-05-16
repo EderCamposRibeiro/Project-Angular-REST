@@ -27,8 +27,28 @@ export class UserService {
   //http://localhost:8080/projectspringrestapi/users/userByName/eder
   findUser(name: String): Observable<any> {
     return this.http.get(AppConstants.baseUrl + 'userByName/' + name);
+  }
 
+  saveUser(user) : Observable<any> {
+    return this.http.post<any>(AppConstants.baseUrl, user);
+  }
 
+  updateUser(user) : Observable<any> {
+    return this.http.put<any>(AppConstants.baseUrl, user);
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

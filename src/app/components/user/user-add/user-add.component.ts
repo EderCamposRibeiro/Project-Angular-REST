@@ -25,7 +25,39 @@ export class UserAddComponent implements OnInit {
   }
 
   saveUser() {
-    console.info(this.user);
+    if (this.user.id != null && this.user.id.toString().trim() != null) { /* Updating/Editing */
+      this.userService.updateUser(this.user).subscribe(data => {
+        this.newUser();
+        console.info("Updated user: " + data);
+      });
+    } else {
+      this.userService.saveUser(this.user).subscribe(data => { /* Saving new user */
+        this.newUser();
+        console.info("Saved user: " + data);
+      });
+    }
+  }
+
+  newUser() {
+    this.user = new SystemUser();
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
