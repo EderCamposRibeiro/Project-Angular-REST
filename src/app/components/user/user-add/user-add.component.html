@@ -1,6 +1,6 @@
 <h3 style="padding: 10px;">User Screen</h3>
 
-<form style="padding: 10px;">
+<form style="padding: 10px;" #formValidate="ngForm">
 	<div class="form-row">
 		<div class="form-group col-md-1">
 			<label for="id">ID</label>
@@ -10,30 +10,34 @@
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			<label for="name">Name</label>
-			<input type="text" [(ngModel)]="user.name" class="form-control" id="name" required="true" name="name" autocomplete="false">
+			<span style="color: red; font-size: 23px;" *ngIf="nameValidate.invalid"> *</span>
+			<input type="text" [(ngModel)]="user.name" #nameValidate="ngModel" class="form-control" id="name" required="true" name="name" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="login">Login/Email</label>
-			<input type="text" [(ngModel)]="user.login" class="form-control" id="login" name="login" required="true" autocomplete="false">
+			<span style="color: red; font-size: 23px;" *ngIf="loginValidate.invalid"> *</span>
+			<input type="text" [(ngModel)]="user.login" #loginValidate="ngModel" class="form-control" id="login" name="login" required="true" autocomplete="false">
 		</div>
 		<div class="form-group col-md-6">
 			<label for="password">Password</label>
-			<input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password" required="true" autocomplete="false">
+			<span style="color: red; font-size: 23px;" *ngIf="passwordValidate.invalid"> *</span>
+			<input type="password" [(ngModel)]="user.password" #passwordValidate="ngModel" class="form-control" id="password" name="password" required="true" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="cpf">CPF</label>
-			<input type="text" [(ngModel)]="user.cpf" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
+			<span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid"> *</span>
+			<input type="text" [(ngModel)]="user.cpf" #cpfValidate="ngModel" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
 		</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active" >Back</button>
 			<button type="button" class="btn btn-primary" (click)="newUser()" style="margin-left: 10px;">New</button>
-			<button type="button" class="btn btn-primary" (click)="saveUser()" style="margin-left: 10px;">Save</button>
+			<button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="saveUser()" style="margin-left: 10px;">Save</button>
 		</div>
 	</div>
 </form>
