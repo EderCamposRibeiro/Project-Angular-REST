@@ -37,6 +37,15 @@ export class UserService {
     return this.http.put<any>(AppConstants.baseUrl, user);
   }
 
+  userAuthenticated() {
+    if (localStorage.getItem('token') !== null &&
+        localStorage.getItem('token').toString().trim() !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
 
 

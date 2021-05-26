@@ -24,12 +24,16 @@ export class SystemUserComponent implements OnInit {
   }
 
   deleteUser(id: Number) {
-    this.userService.deleteUser(id).subscribe(data => {
-      console.log('Return from delete method: ' + data);
-      this.userService.getUserList().subscribe(data => {
-        this.users = data;
+
+    if (confirm('Do you really want to delete?')) {
+      
+      this.userService.deleteUser(id).subscribe(data => {
+        console.log('Return from delete method: ' + data);
+        this.userService.getUserList().subscribe(data => {
+          this.users = data;
+        });
       });
-    });
+    }
   }
 
   findUser() {

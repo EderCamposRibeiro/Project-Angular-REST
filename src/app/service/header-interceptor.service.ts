@@ -1,6 +1,7 @@
 import { Injectable, NgModule } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class HeaderInterceptorService implements HttpInterceptor {
@@ -15,7 +16,15 @@ export class HeaderInterceptorService implements HttpInterceptor {
         headers: req.headers.set('Authorization', token)
       });
 
-      return next.handle(tokenRequest);
+      return next.handle(tokenRequest).pipe(
+
+        tap((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse && (event.status)) {
+            console.info('Transaction success!');
+          }
+        })
+
+        , catchError(this.processError));
     } else {
       return next.handle(req);
     }
@@ -23,6 +32,18 @@ export class HeaderInterceptorService implements HttpInterceptor {
   }
 
   constructor() { }
+
+  processError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      console.error(error.error);
+      errorMessage = 'Error: ' + error.error.error;
+    } else {
+      errorMessage = 'Code: ' + error.error.code + '\nMessage: ' + error.error.error;
+    }
+    window.alert(errorMessage)
+    return throwError(errorMessage);
+  }
 }
 
 @NgModule({
