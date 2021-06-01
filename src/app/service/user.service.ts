@@ -29,12 +29,16 @@ export class UserService {
     return this.http.get(AppConstants.baseUrl + 'userByName/' + name);
   }
 
-  saveUser(user) : Observable<any> {
+  saveUser(user): Observable<any> {
     return this.http.post<any>(AppConstants.baseUrl, user);
   }
 
-  updateUser(user) : Observable<any> {
+  updateUser(user): Observable<any> {
     return this.http.put<any>(AppConstants.baseUrl, user);
+  }
+
+  removeTelephone(id): Observable<any> {
+    return this.http.delete(AppConstants.baseUrl + 'deleteTelephone/' + id, {responseType: 'text'});
   }
 
   userAuthenticated() {
