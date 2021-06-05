@@ -11,6 +11,7 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { SystemUserComponent } from './components/user/systemUser/systemUser.component';
 import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { GuardianGuard } from './service/guardian.guard';
+import { NgxMaskModule, IConfig} from 'ngx-mask';
 
 export const appRouters: Routes = [
 
@@ -23,6 +24,8 @@ export const appRouters: Routes = [
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
+
+export const optionsMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ export const routes: ModuleWithProviders = RouterModule.forRoot(appRouters);
     FormsModule,
     HttpClientModule,
     routes,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxMaskModule.forRoot(optionsMask)
   ],
   providers: [],
   bootstrap: [AppComponent]
