@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
+  getUserListPage(page): Observable<any> {
+    return this.http.get<any>(AppConstants.baseUrl + 'page/' + page);
+  }
+
   getUser(id): Observable<any> {
     return this.http.get<any>(AppConstants.baseUrl + id );
   }
@@ -24,9 +28,13 @@ export class UserService {
     return this.http.delete(AppConstants.baseUrl + id, { responseType: 'text' });
   }
 
-  //http://localhost:8080/projectspringrestapi/users/userByName/eder
+  // http://localhost:8080/projectspringrestapi/users/userByName/eder
   findUser(name: String): Observable<any> {
     return this.http.get(AppConstants.baseUrl + 'userByName/' + name);
+  }
+
+  findUserByPage(name: String, page : Number): Observable<any> {
+    return this.http.get(AppConstants.baseUrl + "userByName/" + name + "/page/" + page);
   }
 
   saveUser(user): Observable<any> {

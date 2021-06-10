@@ -10,36 +10,61 @@ import { SystemUser } from 'src/app/model/systemUser';
 })
 export class SystemUserComponent implements OnInit {
 
-  users: Observable<SystemUser[]>;
+  users: Array<SystemUser[]>;
   name: String;
+  total: Number;
 
-  constructor(private userService: UserService) {
-
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUserList().subscribe(data => {
-      this.users = data;
+      this.users = data.content;
+      this.total = data.totalElements;
     });
   }
 
-  deleteUser(id: Number) {
+  deleteUser(id: Number, index) {
 
     if (confirm('Do you really want to delete?')) {
-      
+
       this.userService.deleteUser(id).subscribe(data => {
-        console.log('Return from delete method: ' + data);
-        this.userService.getUserList().subscribe(data => {
-          this.users = data;
-        });
+
+        this.users.splice(index, 1); // Remove from screen
+
       });
     }
   }
 
   findUser() {
-    this.userService.findUser(this.name).subscribe(data => {
-      this.users = data;
-    })
+
+    if (this.name === '') {
+      this.userService.getUserList().subscribe(data => {
+        this.users = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
+      this.userService.findUser(this.name).subscribe(data => {
+        this.users = data.content;
+        this.total = data.totalElements;
+      });
+    }
+
+  }
+
+  chargingPage(page) {
+
+    if (this.name !== '') {
+      this.userService.findUserByPage(this.name, (page - 1)).subscribe(data => {
+        this.users = data.content;
+        this.total = data.totalElements;
+      });
+    } else {
+      this.userService.getUserListPage(page - 1).subscribe(data => {
+        this.users = data.content;
+        this.total = data.totalElements;
+      });
+    }
+
   }
 
 }

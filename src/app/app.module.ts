@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; /*Ajax Requests*/
 import { RouterModule, Routes } from '@angular/router';
@@ -12,6 +12,7 @@ import { SystemUserComponent } from './components/user/systemUser/systemUser.com
 import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { GuardianGuard } from './service/guardian.guard';
 import { NgxMaskModule, IConfig} from 'ngx-mask';
+import { NgxPaginationModule} from 'ngx-pagination';
 
 export const appRouters: Routes = [
 
@@ -41,7 +42,8 @@ export const optionsMask: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpClientModule,
     routes,
     HttpInterceptorModule,
-    NgxMaskModule.forRoot(optionsMask)
+    NgxMaskModule.forRoot(optionsMask),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
