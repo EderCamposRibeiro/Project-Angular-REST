@@ -11,8 +11,8 @@ import { SystemUser } from 'src/app/model/systemUser';
 export class SystemUserComponent implements OnInit {
 
   users: Array<SystemUser[]>;
-  name: String;
-  total: Number;
+  name: string;
+  total: number;
 
   constructor(private userService: UserService) { }
 
@@ -23,7 +23,7 @@ export class SystemUserComponent implements OnInit {
     });
   }
 
-  deleteUser(id: Number, index) {
+  deleteUser(id: number, index) {
 
     if (confirm('Do you really want to delete?')) {
 

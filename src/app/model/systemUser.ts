@@ -2,11 +2,12 @@ import { Telephone } from './telephone';
 
 export class SystemUser {
 
-	id: Number;
-	login: String;
-	password: String;
-	name: String;
-	cpf: String;
+id: number;
+login: string;
+password: string;
+name: string;
+    cpf: string;
+    birthDate: string;
 
-	telephones: Array<Telephone>;
+telephones: Array<Telephone>;
 }

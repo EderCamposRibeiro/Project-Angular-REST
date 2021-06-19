@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Project-Angular-REST"
+    }
+  },
+  "defaultProject": "Project-Angular-REST",
+  "cli": {
+    "analytics": false
+  }
 }
