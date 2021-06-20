@@ -1,80 +1,97 @@
 <h3 style="padding: 10px;">User Screen</h3>
 
 <form style="padding: 10px;" #formValidate="ngForm">
-	<div class="form-row">
-		<div class="form-group col-md-1">
-			<label for="id">ID</label>
-			<input type="text" [(ngModel)]="user.id" class="form-control" id="id" readonly="true" name="id" autocomplete="false">
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-12">
-			<label for="name">Name</label>
-			<span style="color: red; font-size: 23px;" *ngIf="nameValidate.invalid"> *</span>
-			<input type="text" [(ngModel)]="user.name" #nameValidate="ngModel" class="form-control" id="name" required="true" name="name" autocomplete="false">
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="login">Login/Email</label>
-			<span style="color: red; font-size: 23px;" *ngIf="loginValidate.invalid"> *</span>
-			<input type="text" [(ngModel)]="user.login" #loginValidate="ngModel" class="form-control" id="login" name="login" required="true" autocomplete="false">
-		</div>
-		<div class="form-group col-md-6">
-			<label for="password">Password</label>
-			<span style="color: red; font-size: 23px;" *ngIf="passwordValidate.invalid"> *</span>
-			<input type="password" [(ngModel)]="user.password" #passwordValidate="ngModel" class="form-control" id="password" name="password" required="true" autocomplete="false">
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-3">
-			<label for="cpf">CPF</label>
-			<span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid"> *</span>
-			<input type="text" mask="000.000.000-00" [showMaskTyped]="true" [(ngModel)]="user.cpf" #cpfValidate="ngModel" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="id">ID</label>
+            <input type="text" [(ngModel)]="user.id" class="form-control" id="id" readonly="true" name="id"
+                autocomplete="false">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="name">Name</label>
+            <span style="color: red; font-size: 23px;" *ngIf="nameValidate.invalid"> *</span>
+            <input type="text" [(ngModel)]="user.name" #nameValidate="ngModel" class="form-control" id="name"
+                required="true" name="name" autocomplete="false">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="login">Login/Email</label>
+            <span style="color: red; font-size: 23px;" *ngIf="loginValidate.invalid"> *</span>
+            <input type="text" [(ngModel)]="user.login" #loginValidate="ngModel" class="form-control" id="login"
+                name="login" required="true" autocomplete="false">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <span style="color: red; font-size: 23px;" *ngIf="passwordValidate.invalid"> *</span>
+            <input type="password" [(ngModel)]="user.password" #passwordValidate="ngModel" class="form-control"
+                id="password" name="password" required="true" autocomplete="false">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="cpf">CPF</label>
+            <span style="color: red; font-size: 23px;" *ngIf="cpfValidate.invalid"> *</span>
+            <input type="text" mask="000.000.000-00" [showMaskTyped]="true" [(ngModel)]="user.cpf"
+                #cpfValidate="ngModel" class="form-control" id="cpf" name="cpf" required="true" autocomplete="false">
         </div>
         <div class="form-group col-md-3">
             <label for="birthDate">Birth date</label>
-            <span style="color: red; font-size: 23px;" > *</span>
+            <span style="color: red; font-size: 23px;"> *</span>
             <div class="input-group">
-                <input name="birthDate" type="text" class="form-control" placeholder="dd/mm/yyyy" ngbDatepicker #birthDate="ngbDatepicker" [(ngModel)]="user.birthDate" id="birthDate" required="true">
-                 <div class="input-group-append">
+                <input name="birthDate" type="text" class="form-control" placeholder="dd/mm/yyyy" ngbDatepicker
+                    #birthDate="ngbDatepicker" [(ngModel)]="user.birthDate" id="birthDate" required="true">
+                <div class="input-group-append">
                     <button class="btn btn-primary" (click)="birthDate.toggle()" type="button"></button>
-                 </div>
+                </div>
             </div>
         </div>
-	</div>
+        <div class="form-group col-md-3">
+            <label for="profession">Profession</label>
+            <span style="color: red; font-size: 23px;" *ngIf="professionValidate.invalid"> *</span>
+            <select [(ngModel)]="user.profession.id" id="profession" name="profession" #professionValidate="ngModel"
+                class="form-control" required="true">
+                <option [ngValue]="p.id" *ngFor="let p of professions">{{p.description}}</option>
+            </select>
+        </div>
+    </div>
 
-	<div class="card text-center">
-		<div class="card-header">
-			Contact Number
-		</div>
-		<div class="card-body" style="padding-left: 1px;">
-			<div class="form-row">
-				<div class="form-group col-md-3">
-					<input type="text" mask="(00) 0 0000-0000" [showMaskTyped]="true" class="form-control" [(ngModel)]="telephone.number" id="number" name="number">
-				</div>
-				<div class="form-group col-md-2">
-					<button class="btn btn-primary" (click)="addPhone()">Add</button>
-				</div>				
-			</div>
-		</div>
-	</div>
+    <div class="card text-center">
+        <div class="card-header">
+            Contact Number
+        </div>
+        <div class="card-body" style="padding-left: 1px;">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" mask="(00) 0 0000-0000" [showMaskTyped]="true" class="form-control"
+                        [(ngModel)]="telephone.number" id="number" name="number">
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-primary" (click)="addPhone()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <table class="table">
-		<tbody>
-			<tr *ngFor="let phone of user.telephones; let i = index">
-			<td>{{phone.id}}</td>
-			<td>{{phone.number | mask:'(00) 0 0000-0000'}}</td>
-			<td><button class="btn btn-danger" (click)="deleteTelephone(phone.id, i)">Delete</button></td>
-			</tr>
-		</tbody>
-	</table>
+        <tbody>
+            <tr *ngFor="let phone of user.telephones; let i = index">
+                <td>{{phone.id}}</td>
+                <td>{{phone.number | mask:'(00) 0 0000-0000'}}</td>
+                <td><button class="btn btn-danger" (click)="deleteTelephone(phone.id, i)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
 
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<button type="button" class="btn btn-primary" [routerLink]="['/userList']" routerLinkActive="router-link-active" >Back</button>
-			<button type="button" class="btn btn-primary" (click)="newUser()" style="margin-left: 10px;">New</button>
-			<button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="saveUser()" style="margin-left: 10px;">Save</button>
-		</div>
-	</div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" [routerLink]="['/userList']"
+                routerLinkActive="router-link-active">Back</button>
+            <button type="button" class="btn btn-primary" (click)="newUser()" style="margin-left: 10px;">New</button>
+            <button type="button" class="btn btn-primary" [disabled]="formValidate.invalid" (click)="saveUser()"
+                style="margin-left: 10px;">Save</button>
+        </div>
+    </div>
 </form>

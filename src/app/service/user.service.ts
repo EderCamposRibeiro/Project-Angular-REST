@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<any>(AppConstants.baseUrl);
   }
 
+  getProfessionList(): Observable<any> {
+      return this.http.get<any>(AppConstants.getBaseUrlPath + 'profession/');
+  }
+
   getUserListPage(page): Observable<any> {
     return this.http.get<any>(AppConstants.baseUrl + 'page/' + page);
   }
@@ -24,17 +28,17 @@ export class UserService {
     return this.http.get<any>(AppConstants.baseUrl + id );
   }
 
-  deleteUser(id: Number): Observable<any> {
+  deleteUser(id: number): Observable<any> {
     return this.http.delete(AppConstants.baseUrl + id, { responseType: 'text' });
   }
 
   // http://localhost:8080/projectspringrestapi/users/userByName/eder
-  findUser(name: String): Observable<any> {
+  findUser(name: string): Observable<any> {
     return this.http.get(AppConstants.baseUrl + 'userByName/' + name);
   }
 
-  findUserByPage(name: String, page : Number): Observable<any> {
-    return this.http.get(AppConstants.baseUrl + "userByName/" + name + "/page/" + page);
+  findUserByPage(name: string, page: number): Observable<any> {
+    return this.http.get(AppConstants.baseUrl + 'userByName/' + name + '/page/' + page);
   }
 
   saveUser(user): Observable<any> {
